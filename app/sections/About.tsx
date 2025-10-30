@@ -1,15 +1,60 @@
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const skills = [
-  'React',
-  'Next.js',
+  // Languages
   'TypeScript',
-  'Tailwind CSS',
-  'Node.js',
-  'Git',
+  'JavaScript',
+  '.NET',
+  'C#',
   'Python',
-  'MongoDB'
+  'Java',
+  
+  // Backend
+  'Node.js',
+  'FastAPI',
+  'REST APIs',
+  'GraphQL',
+  'Linux CLI',
+  
+  // Cloud & DevOps
+  'AWS',
+  'Azure',
+  'DigitalOcean',
+  'Firebase',
+  'Oracle Cloud',
+  'Cloudflare',
+  'Docker',
+  'Kubernetes',
+  
+  // Tools & Platforms
+  'Github',
+  'CI/CD',
+  'Jenkins',
+  'Terraform',
+  'Jira',
+  'Agile/Scrum',
+  'Confluence',
+  'Jest',
+  
+  // Frontend
+  'Reactjs',
+  'Next.js',
+  'Vue.js',
+  'CSS3',
+  
+  // Databases
+  'PostgreSQL',
+  'MySQL',
+  'NoSQL',
+  'MongoDB',
+  'Prisma',
+  'TypeORM',
+  
+  // AI Tools
+  'Claude Code',
+  'Cursor',
+  'Github Co-pilot'
 ];
 
 export default function About() {
@@ -18,14 +63,15 @@ export default function About() {
       id="about"
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20"
     >
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl sm:text-5xl font-bold mb-8">About Me</h2>
+      <div className="max-w-4xl mx-auto w-full">
+        <h2 className="text-4xl sm:text-5xl font-bold mb-12">About Me</h2>
         
-        <Card>
+        {/* About Text */}
+        <Card className="mb-12">
           <CardContent className="pt-6">
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                I&apos;m a passionate full-stack developer focused on creating elegant
+                I&apos;m a passionate developer focused on creating elegant
                 solutions to complex problems. With expertise in modern web
                 technologies, I bring ideas to life through clean code and
                 thoughtful design.
@@ -41,12 +87,16 @@ export default function About() {
         </Card>
 
         {/* Skills Section */}
-        <div className="mt-12">
+        <div>
           <h3 className="text-2xl font-semibold mb-6">Skills</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
-              <Badge key={skill} className="hover:shadow-md transition-shadow">
-                <p className="font-medium">{skill}</p>
+              <Badge 
+                key={skill} 
+                variant="secondary" 
+                className="px-3 py-1.5 text-sm"
+              >
+                {skill}
               </Badge>
             ))}
           </div>
