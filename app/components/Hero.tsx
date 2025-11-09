@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import ReactCSSTransitionGroup from "react-transition-group";
 
 export default function Hero() {
   return (

@@ -21,6 +21,7 @@ import {
   Trophy 
 } from "lucide-react";
 import { ThemeToggle } from "./Theme-toggle";
+import { motion } from "framer-motion";
 
 const navItems = [
   { href: "#about", label: "About", icon: User },
@@ -35,7 +36,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl">
+    <motion.nav 
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="bg-background/80 backdrop-blur-md border rounded-full shadow-lg px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -94,6 +100,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

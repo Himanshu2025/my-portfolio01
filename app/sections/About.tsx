@@ -1,5 +1,10 @@
+"use client";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const skills = [
   // Languages
@@ -58,18 +63,33 @@ const skills = [
 ];
 
 export default function About() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <section
+      ref={ref}
       id="about"
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="max-w-6xl mx-auto w-full">
-        <h2 className="text-4xl sm:text-5xl font-bold mb-12">About Me</h2>
+        <motion.h2 
+          className="text-4xl sm:text-5xl font-bold mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+        >
+          About Me
+        </motion.h2>
         
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side - About Text */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <Card>
               <CardContent className="pt-6">
                 <div className="space-y-6 text-lg text-muted-foreground">
@@ -88,27 +108,37 @@ export default function About() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Right Side - Skills */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <Card>
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-semibold mb-6">Skills</h3>
                 <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <Badge 
-                      key={skill} 
-                      variant="secondary" 
-                      className="px-3 py-1.5 text-sm"
+                  {skills.map((skill, index) => (
+                    <motion.div
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.3, delay: 0.5 + index * 0.02 }}
                     >
-                      {skill}
-                    </Badge>
+                      <Badge 
+                        variant="secondary" 
+                        className="px-3 py-1.5 text-sm"
+                      >
+                        {skill}
+                      </Badge>
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
